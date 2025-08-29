@@ -1,4 +1,5 @@
 const bfhlService = require("../services/bfhlService");
+const userConfig = require("../config/userConfig");
 
 exports.handleBfhlRequest = (req, res, next) => {
   try {
@@ -6,15 +7,11 @@ exports.handleBfhlRequest = (req, res, next) => {
 
     const result = bfhlService.processData(data);
 
-    const userId = "gaurav_kumar_singh_29082025";
-    const email = "gaurav.22bce7822@vitapstudent.ac.in";
-    const rollNumber = "22BCE7822";
-
     res.status(200).json({
       is_success: true,
-      user_id: userId,
-      email: email,
-      roll_number: rollNumber,
+      user_id: userConfig.userId,
+      email: userConfig.email,
+      roll_number: userConfig.rollNumber,
       ...result,
     });
   } catch (error) {
